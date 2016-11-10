@@ -5,7 +5,7 @@ description: >
   Co-founder of Techynaf.
 
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://sunny.im" # the base hostname & protocol for your site
+url: "http://www.sunny.im" # the base hostname & protocol for your site
 
 author:
   fullname: Shehabul Hossain Sunny
