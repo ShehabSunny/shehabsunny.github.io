@@ -3,6 +3,8 @@ layout: page
 title:
 subtitle:
 permalink: /blog/
+sitemap:
+  priority: 0.9
 ---
 
 <ul class="list-posts">
