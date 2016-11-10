@@ -2,11 +2,10 @@
 layout: page
 title:
 subtitle:
-sitemap:
-  priority: 0.9
+permalink: /blog/
 ---
 
-<!-- <ul class="list-posts">
+<ul class="list-posts">
     {% for post in site.posts %}
         <li class="post-teaser">
             <a href="{{ post.url | prepend: site.baseurl }}">
@@ -15,8 +14,4 @@ sitemap:
             </a>
         </li>
     {% endfor %}
-</ul> -->
-
-hello hi!
-
-<script> document.getElementsByTagName('body')[0].classList.add('glitch'); </script>
+</ul>
