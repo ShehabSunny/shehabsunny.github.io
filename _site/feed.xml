@@ -6,9 +6,178 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 11 Nov 2016 04:24:48 +0600</pubDate>
-    <lastBuildDate>Fri, 11 Nov 2016 04:24:48 +0600</lastBuildDate>
+    <pubDate>Fri, 26 May 2017 03:51:18 +0600</pubDate>
+    <lastBuildDate>Fri, 26 May 2017 03:51:18 +0600</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        <title>Blog like a pro with Jekyll</title>
+        <description>&lt;h2 id=&quot;writing-a-blog&quot;&gt;Writing a blog&lt;/h2&gt;
+&lt;p&gt;There are many ways to write a blog. Some requires few mouse clicks and some drag and drops. Tools like Wordpress makes it extremely easy to create your own blog site. However, let’s talk about something that requires more than just mouse clicks. It’s called “Jekyll”. According to the official website “Jekyll is a simple, blog-aware, static site generator”. Let’s get more into it.&lt;/p&gt;
+
+&lt;p&gt;*I assume that you have knowledge about &lt;strong&gt;git&lt;/strong&gt; and have a &lt;strong&gt;Github&lt;/strong&gt; account. If you don’t have a Github account then you can create one &lt;a href=&quot;http://github.com&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;, It’s easy and free.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-and-why&quot;&gt;What and Why?&lt;/h2&gt;
+&lt;p&gt;Jekyll is a static site generator, it converts raw text files in various formats (like Markdown) and converts them into html files. It generates ready-to-publish static websites that can be served with a web server.&lt;/p&gt;
+
+&lt;p&gt;The Unique feature of Jekyll is that it happens to be the engine behind  &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt;. As a result we can easily host our blog/site on Github’s server for free.&lt;/p&gt;
+
+&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;First of all we need to install and setup Jekyll. Then create a new site, build it and push it into a github repository that has been created for our Github Page. Our site will be live at &lt;strong&gt;http://[username].github.io&lt;/strong&gt;. We will also be able to use a custom domain of our own.&lt;/p&gt;
+
+&lt;p&gt;While writing a new blog post we will be creating a new markdown file in the project, write everything, build using a single command and push everything into the repository. That’s all it takes to publish a new blog post. No login and nothing. Open a text editor, write a blog and simply ‘git push’.&lt;/p&gt;
+
+&lt;h2 id=&quot;installing-jekyll&quot;&gt;Installing Jekyll&lt;/h2&gt;
+&lt;p&gt;Jekyll has dependencies on Ruby, RubyGems, GCC and Make.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Requirements:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;GNU/Linux, Unix, or macOS&lt;/li&gt;
+  &lt;li&gt;Ruby version 2.0 or above, including all development headers&lt;/li&gt;
+  &lt;li&gt;RubyGems&lt;/li&gt;
+  &lt;li&gt;GCC and Make&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;install-ruby-and-rubygems&quot;&gt;Install Ruby and RubyGems:&lt;/h4&gt;
+&lt;p&gt;We can install Ruby from &lt;a href=&quot;https://www.ruby-lang.org/en/documentation/installation/&quot; target=&quot;_blank&quot;&gt;official website&lt;/a&gt;. Make sure the version is 2.0 or above. RubyGems should be included with Ruby. Run these commands to check version number.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ruby -v
+ruby 2.4.1p111 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2017-03-22 revision 58053&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;x86_64-linux]&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem -v
+2.6.11&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;install-gcc-and-make&quot;&gt;Install GCC and Make:&lt;/h4&gt;
+&lt;p&gt;Install GCC and Make from their official websites.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gcc.gnu.org/install/&quot; target=&quot;_blank&quot;&gt;Download GCC&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.gnu.org/software/make/&quot; target=&quot;_blank&quot;&gt;Download Make&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Again, check installation with following commands&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gcc -v&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;make -v&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;install-jekyll&quot;&gt;Install Jekyll:&lt;/h4&gt;
+&lt;p&gt;Now that RubyGems is installed, use this command to install Jekyll on your computer.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install jekyll bundler&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;create-new-blog-site&quot;&gt;Create new blog site&lt;/h2&gt;
+&lt;p&gt;After installing Jekyll, let’s create a new blog site. Execute the following command. This will create the boilerplate of our site.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jekyll new my-awesome-site&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This command will create a new folder named ‘my-awesome-site’ in the current directory with all the files needed. We can now start writing blog posts.&lt;/p&gt;
+
+&lt;p&gt;A basic Jekyll site usually looks something like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;.
+├── _config.yml
+├── _data
+|   └── members.yml
+├── _drafts
+|   ├── begin-with-the-crazy-ideas.md
+|   └── on-simplicity-in-technology.md
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   └── post.html
+├── _posts
+|   ├── 2007-10-29-why-every-programmer-should-play-nethack.md
+|   └── 2009-04-26-barcamp-boston-4-roundup.md
+├── _sass
+|   ├── _base.scss
+|   └── _layout.scss
+├── _site
+├── .jekyll-metadata
+└── index.html &lt;span class=&quot;c&quot;&gt;# can also be an 'index.md' with valid YAML Frontmatter&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;_config.yml&lt;/strong&gt; contains all the configurations for the site. For example, site title, description, url, excluded files, syntax highlight etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;_posts&lt;/strong&gt; folder will contain all our blog posts in different markdown files. Keep in mind that all the files should have &lt;strong&gt;&lt;em&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/em&gt;&lt;/strong&gt; naming format.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;_site&lt;/strong&gt; folder will be generated when we build our site. It will contain all the files necessary for the site.
+For more information on project structure visit &lt;a href=&quot;https://jekyllrb.com/docs/structure/&quot; target=&quot;_blank&quot;&gt;this link&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;running-on-local-machine&quot;&gt;Running on local machine&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This command will transform all the markdown files into proper html files and also generate all the files into &lt;strong&gt;_site&lt;/strong&gt; folder and run a local server on your machine.&lt;/p&gt;
+
+&lt;h2 id=&quot;writing-your-first-blog-post&quot;&gt;Writing your first blog post&lt;/h2&gt;
+&lt;p&gt;Let’s create a new markdown file in &lt;strong&gt;_posts&lt;/strong&gt; folder with &lt;strong&gt;&lt;em&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/em&gt;&lt;/strong&gt; naming format.&lt;/p&gt;
+
+&lt;p&gt;Any file that contains a YAML front matter block will be processed by Jekyll as a special file. The front matter must be the first thing in the file and must take the form of valid YAML set between triple-dashed lines.&lt;/p&gt;
+
+&lt;p&gt;A blog post needs to have the following front matter:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;---
+layout: post
+title:  &lt;span class=&quot;s2&quot;&gt;&quot;Welcome to Jekyll!&quot;&lt;/span&gt;
+date:   2017-05-26 02:05:27 +0600
+categories: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;awesome-category]
+---&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This block contains configs for this specific blog post, After the block we will write our blog post in markdown language.&lt;/p&gt;
+
+&lt;p&gt;**Remember that Jekyll supports &lt;strong&gt;Liquid template language&lt;/strong&gt;, so we can use it’s tags in our posts.&lt;/p&gt;
+
+&lt;p&gt;If you have the server running then it will automatically regenerate when you change in a file. As a result you can see the changes by just refreshing the page in the browser.&lt;/p&gt;
+
+&lt;h2 id=&quot;publish&quot;&gt;Publish&lt;/h2&gt;
+&lt;h3 id=&quot;building-the-site&quot;&gt;Building the site&lt;/h3&gt;
+
+&lt;p&gt;Run this command to start building the project. It will generate everything into &lt;strong&gt;_site&lt;/strong&gt; folder.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll build&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now you can take the everything from &lt;strong&gt;_site&lt;/strong&gt; folder and host it on a server, that will work fine. However, the best part is using with Github so that We can simply commit and push to update our site.&lt;/p&gt;
+
+&lt;h3 id=&quot;free-hosting-with-github-pages&quot;&gt;Free hosting with GitHub Pages&lt;/h3&gt;
+
+&lt;p&gt;As I have mentioned earlier that we can host our site on Github for free. In order to accomplish that we need to login to out Github account and create a repository named &lt;strong&gt;&lt;em&gt;[username].github.io&lt;/em&gt;&lt;/strong&gt;. Now come back and push our project to the repository. It’s that simple to publish our site with Github Pages. The site will be published at &lt;strong&gt;[username].github.io&lt;/strong&gt;. If you want to change anything (like changing CSS, Html or write new Post) then do it on your local machine and push to the github repository. That will update the site instantly.&lt;/p&gt;
+
+&lt;h2 id=&quot;tips&quot;&gt;Tips&lt;/h2&gt;
+&lt;p&gt;Jekyll has a number of themes available at &lt;a href=&quot;http://jekyllthemes.org/&quot; target=&quot;_blank&quot;&gt;this link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com&quot; target=&quot;_blank&quot;&gt;https://jekyllrb.com&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com&quot; target=&quot;_blank&quot;&gt;https://github.com&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pages.github.com/&quot; target=&quot;_blank&quot;&gt;https://pages.github.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 25 May 2017 06:00:01 +0600</pubDate>
+        <link>http://localhost:4000/tools/2017/05/25/blog-like-a-pro-with-jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tools/2017/05/25/blog-like-a-pro-with-jekyll.html</guid>
+        
+        
+        <category>tools</category>
+        
+      </item>
+    
+      <item>
+        <title>Hello, Hi, What's up World!</title>
+        <description>&lt;p&gt;“Hello World!”, this is how we all started. My journey started in 2012, I was a fresher at BRAC University (good old days). Today, here I am again writing another “hello world”. I never thought I’d be writing a blog. Mainly because I hate writing :p&lt;/p&gt;
+
+&lt;p&gt;I will be writing about programming/tech/random stuffs. Keep in mind that I’m not a programming expert yet. I like to try new stuffs which I will be posting here. Hope it will be fun! :)&lt;/p&gt;
+
+&lt;p&gt;Stay well.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 11 Nov 2016 09:23:01 +0600</pubDate>
+        <link>http://localhost:4000/random/2016/11/11/hello-world.html</link>
+        <guid isPermaLink="true">http://localhost:4000/random/2016/11/11/hello-world.html</guid>
+        
+        
+        <category>random</category>
+        
+      </item>
     
   </channel>
 </rss>

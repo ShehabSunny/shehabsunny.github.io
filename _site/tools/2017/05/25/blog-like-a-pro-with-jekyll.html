@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Blog like a pro with Jekyll —  &raquo;  Shehabul Hossain Sunny</title>
+<meta name="description" content="Shehabul Hossain Sunny. Software Developer from Dhaka, Bangladesh. Co-founder of Techynaf.
+">
+<meta name="keywords" content="">
+<link rel="canonical" href="http://localhost:4000/tools/2017/05/25/blog-like-a-pro-with-jekyll.html">
+        
+
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Blog like a pro with Jekyll" />
+<meta name="twitter:description" content="Shehabul Hossain Sunny. Software Developer from Dhaka, Bangladesh. Co-founder of Techynaf.
+" />
+<meta name="twitter:image" content="http://localhost:4000" />
+
+<!-- Google plus -->
+<meta name="author" content="https://www.google.com/+ShehabulSunny">
+<link rel="author" href="https://www.google.com/+ShehabulSunny">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blog like a pro with Jekyll">
+<meta property="og:description" content="Shehabul Hossain Sunny. Software Developer from Dhaka, Bangladesh. Co-founder of Techynaf.
+">
+<meta property="og:url" content="http://localhost:4000/tools/2017/05/25/blog-like-a-pro-with-jekyll.html">
+<meta property="og:site_name" content="Shehabul Hossain Sunny">
+
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/assets/vendor/highlight/styles/solarized_dark.css">
+
+<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css">
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <header class="header">
+    <div class="navigation">
+        <a href="/" class="logo">Shehabul Hossain Sunny</a>
+
+        <ul class="menu">
+            <li class="menu__entry"><a href="/about">About</a></li>
+            <li class="menu__entry"><a href="/blog">Blog</a></li>
+        </ul>
+    </div>
+
+    <ul class="social-links">
+        
+            <a href="https://github.com/ShehabSunny" class="social-links__entry" target="_blank">
+                <i class="fa fa-github"></i>
+            </a>
+        
+
+        
+            <a href="https://twitter.com/ShehabulSunny" class="social-links__entry" target="_blank">
+                <i class="fa fa-twitter"></i>
+            </a>
+        
+    </ul>
+</header>
+
+
+            <h1 class="page-title post-title">
+    <div class="page-title__text post-title__text">Blog like a pro with Jekyll</div>
+    <div class="page-title__subtitle post-title__subtitle"></div>
+</h1>
+
+<div class="content">
+    <h2 id="writing-a-blog">Writing a blog</h2>
+<p>There are many ways to write a blog. Some requires few mouse clicks and some drag and drops. Tools like Wordpress makes it extremely easy to create your own blog site. However, let’s talk about something that requires more than just mouse clicks. It’s called “Jekyll”. According to the official website “Jekyll is a simple, blog-aware, static site generator”. Let’s get more into it.</p>
+
+<p>*I assume that you have knowledge about <strong>git</strong> and have a <strong>Github</strong> account. If you don’t have a Github account then you can create one <a href="http://github.com" target="_blank">here</a>, It’s easy and free.</p>
+
+<h2 id="what-and-why">What and Why?</h2>
+<p>Jekyll is a static site generator, it converts raw text files in various formats (like Markdown) and converts them into html files. It generates ready-to-publish static websites that can be served with a web server.</p>
+
+<p>The Unique feature of Jekyll is that it happens to be the engine behind  <a href="https://pages.github.com/">Github Pages</a>. As a result we can easily host our blog/site on Github’s server for free.</p>
+
+<h2 id="overview">Overview</h2>
+<p>First of all we need to install and setup Jekyll. Then create a new site, build it and push it into a github repository that has been created for our Github Page. Our site will be live at <strong>http://[username].github.io</strong>. We will also be able to use a custom domain of our own.</p>
+
+<p>While writing a new blog post we will be creating a new markdown file in the project, write everything, build using a single command and push everything into the repository. That’s all it takes to publish a new blog post. No login and nothing. Open a text editor, write a blog and simply ‘git push’.</p>
+
+<h2 id="installing-jekyll">Installing Jekyll</h2>
+<p>Jekyll has dependencies on Ruby, RubyGems, GCC and Make.</p>
+
+<p><strong>Requirements:</strong></p>
+<ul>
+  <li>GNU/Linux, Unix, or macOS</li>
+  <li>Ruby version 2.0 or above, including all development headers</li>
+  <li>RubyGems</li>
+  <li>GCC and Make</li>
+</ul>
+
+<h4 id="install-ruby-and-rubygems">Install Ruby and RubyGems:</h4>
+<p>We can install Ruby from <a href="https://www.ruby-lang.org/en/documentation/installation/" target="_blank">official website</a>. Make sure the version is 2.0 or above. RubyGems should be included with Ruby. Run these commands to check version number.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>ruby -v
+ruby 2.4.1p111 <span class="o">(</span>2017-03-22 revision 58053<span class="o">)</span> <span class="o">[</span>x86_64-linux]</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>gem -v
+2.6.11</code></pre></figure>
+
+<h4 id="install-gcc-and-make">Install GCC and Make:</h4>
+<p>Install GCC and Make from their official websites.</p>
+<ul>
+  <li><a href="https://gcc.gnu.org/install/" target="_blank">Download GCC</a></li>
+  <li><a href="https://www.gnu.org/software/make/" target="_blank">Download Make</a></li>
+</ul>
+
+<p>Again, check installation with following commands</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>gcc -v</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>make -v</code></pre></figure>
+
+<h4 id="install-jekyll">Install Jekyll:</h4>
+<p>Now that RubyGems is installed, use this command to install Jekyll on your computer.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"> <span class="nv">$ </span>gem install jekyll bundler</code></pre></figure>
+
+<h2 id="create-new-blog-site">Create new blog site</h2>
+<p>After installing Jekyll, let’s create a new blog site. Execute the following command. This will create the boilerplate of our site.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"> <span class="nv">$ </span>jekyll new my-awesome-site</code></pre></figure>
+
+<p>This command will create a new folder named ‘my-awesome-site’ in the current directory with all the files needed. We can now start writing blog posts.</p>
+
+<p>A basic Jekyll site usually looks something like this:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">.
+├── _config.yml
+├── _data
+|   └── members.yml
+├── _drafts
+|   ├── begin-with-the-crazy-ideas.md
+|   └── on-simplicity-in-technology.md
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   └── post.html
+├── _posts
+|   ├── 2007-10-29-why-every-programmer-should-play-nethack.md
+|   └── 2009-04-26-barcamp-boston-4-roundup.md
+├── _sass
+|   ├── _base.scss
+|   └── _layout.scss
+├── _site
+├── .jekyll-metadata
+└── index.html <span class="c"># can also be an 'index.md' with valid YAML Frontmatter</span></code></pre></figure>
+
+<p><strong>_config.yml</strong> contains all the configurations for the site. For example, site title, description, url, excluded files, syntax highlight etc.</p>
+
+<p><strong>_posts</strong> folder will contain all our blog posts in different markdown files. Keep in mind that all the files should have <strong><em>YEAR-MONTH-DAY-title.MARKUP</em></strong> naming format.</p>
+
+<p><strong>_site</strong> folder will be generated when we build our site. It will contain all the files necessary for the site.
+For more information on project structure visit <a href="https://jekyllrb.com/docs/structure/" target="_blank">this link</a>.</p>
+
+<h4 id="running-on-local-machine">Running on local machine</h4>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>bundle <span class="nb">exec </span>jekyll serve</code></pre></figure>
+
+<p>This command will transform all the markdown files into proper html files and also generate all the files into <strong>_site</strong> folder and run a local server on your machine.</p>
+
+<h2 id="writing-your-first-blog-post">Writing your first blog post</h2>
+<p>Let’s create a new markdown file in <strong>_posts</strong> folder with <strong><em>YEAR-MONTH-DAY-title.MARKUP</em></strong> naming format.</p>
+
+<p>Any file that contains a YAML front matter block will be processed by Jekyll as a special file. The front matter must be the first thing in the file and must take the form of valid YAML set between triple-dashed lines.</p>
+
+<p>A blog post needs to have the following front matter:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">---
+layout: post
+title:  <span class="s2">"Welcome to Jekyll!"</span>
+date:   2017-05-26 02:05:27 +0600
+categories: <span class="o">[</span>awesome-category]
+---</code></pre></figure>
+
+<p>This block contains configs for this specific blog post, After the block we will write our blog post in markdown language.</p>
+
+<p>**Remember that Jekyll supports <strong>Liquid template language</strong>, so we can use it’s tags in our posts.</p>
+
+<p>If you have the server running then it will automatically regenerate when you change in a file. As a result you can see the changes by just refreshing the page in the browser.</p>
+
+<h2 id="publish">Publish</h2>
+<h3 id="building-the-site">Building the site</h3>
+
+<p>Run this command to start building the project. It will generate everything into <strong>_site</strong> folder.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>bundle <span class="nb">exec </span>jekyll build</code></pre></figure>
+
+<p>Now you can take the everything from <strong>_site</strong> folder and host it on a server, that will work fine. However, the best part is using with Github so that We can simply commit and push to update our site.</p>
+
+<h3 id="free-hosting-with-github-pages">Free hosting with GitHub Pages</h3>
+
+<p>As I have mentioned earlier that we can host our site on Github for free. In order to accomplish that we need to login to out Github account and create a repository named <strong><em>[username].github.io</em></strong>. Now come back and push our project to the repository. It’s that simple to publish our site with Github Pages. The site will be published at <strong>[username].github.io</strong>. If you want to change anything (like changing CSS, Html or write new Post) then do it on your local machine and push to the github repository. That will update the site instantly.</p>
+
+<h2 id="tips">Tips</h2>
+<p>Jekyll has a number of themes available at <a href="http://jekyllthemes.org/" target="_blank">this link</a></p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://jekyllrb.com" target="_blank">https://jekyllrb.com</a></li>
+  <li><a href="https://github.com" target="_blank">https://github.com</a></li>
+  <li><a href="https://pages.github.com/" target="_blank">https://pages.github.com/</a></li>
+</ul>
+
+</div>
+
+<div class="about">
+    <div class="about__devider">*****</div>
+    <div class="about__text">
+        Written by <strong>  Shehabul Hossain Sunny </strong>
+        on <strong>25 May 2017</strong>
+    </div>
+</div>
+
+
+        </div>
+
+        <script src="/assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+        
+    </body>
+</html>
