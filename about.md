@@ -1,15 +1,8 @@
 ---
 layout: page
-title: About
-subtitle: Just another human being?
+title: About Me
+subtitle: just another human being
 permalink: /about/
 ---
 
-Hello everyone, I am an alumnus of Computer Science and Engineering Department, BRAC University. Started coding in 2012. Now I'm exploring different branches of software technologies. I like to Code, play Counter Strike and travel.
-
-
-<!-- This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
-
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
-
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll) -->
+I am a Software Engineer at [Selise rockin' software](http://selise.ch){:target="_blank"} in Dhaka, Bangladesh. I like creating things with coding. Always looking forward to learn new technologies that are being developed. I am highly interested in Artificial Intelligence and Machine Learning. I believe that Artificial Intelligence will rule the future of tech industry.

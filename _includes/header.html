@@ -15,6 +15,12 @@
             </a>
         {% endif %}
 
+        {% if site.author.facebook %}
+            <a href="https://facebook.com/{{ site.author.facebook }}" class="social-links__entry" target="_blank">
+                <i class="fa fa-facebook"></i>
+            </a>
+        {% endif %}
+
         {% if site.author.twitter %}
             <a href="https://twitter.com/{{ site.author.twitter }}" class="social-links__entry" target="_blank">
                 <i class="fa fa-twitter"></i>
