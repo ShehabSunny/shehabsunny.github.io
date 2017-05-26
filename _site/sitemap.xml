@@ -3,7 +3,7 @@
   
     
     <url>
-      <loc>http://localhost:4000/tools/2017/05/25/blog-like-a-pro-with-jekyll.html/</loc>
+      <loc>http://www.sunny.im/tools/2017/05/25/blog-like-a-pro-with-jekyll.html/</loc>
       
         <lastmod>2017-05-25T06:00:01+06:00</lastmod>
       
@@ -18,7 +18,7 @@
   
     
     <url>
-      <loc>http://localhost:4000/random/2016/11/11/hello-world.html/</loc>
+      <loc>http://www.sunny.im/random/2016/11/11/hello-world.html/</loc>
       
         <lastmod>2016-11-11T09:23:01+06:00</lastmod>
       
@@ -36,9 +36,9 @@
   
     
     <url>
-      <loc>http://localhost:4000/about/</loc>
+      <loc>http://www.sunny.im/about/</loc>
       
-        <lastmod>2017-05-26T14:35:34+06:00</lastmod>
+        <lastmod>2017-05-26T14:38:01+06:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -51,9 +51,9 @@
   
     
     <url>
-      <loc>http://localhost:4000/blog/</loc>
+      <loc>http://www.sunny.im/blog/</loc>
       
-        <lastmod>2017-05-26T14:35:34+06:00</lastmod>
+        <lastmod>2017-05-26T14:38:01+06:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -66,9 +66,9 @@
   
     
     <url>
-      <loc>http://localhost:4000/categories/design/</loc>
+      <loc>http://www.sunny.im/categories/design/</loc>
       
-        <lastmod>2017-05-26T14:35:34+06:00</lastmod>
+        <lastmod>2017-05-26T14:38:01+06:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -83,9 +83,9 @@
   
     
     <url>
-      <loc>http://localhost:4000/</loc>
+      <loc>http://www.sunny.im/</loc>
       
-        <lastmod>2017-05-26T14:35:34+06:00</lastmod>
+        <lastmod>2017-05-26T14:38:01+06:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -100,43 +100,9 @@
   
     
     <url>
-      <loc>http://localhost:4000/categories/productivity/</loc>
+      <loc>http://www.sunny.im/categories/productivity/</loc>
       
-        <lastmod>2017-05-26T14:35:34+06:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://localhost:4000/categories/random/</loc>
-      
-        <lastmod>2017-05-26T14:35:34+06:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-  
-    
-  
-    
-    <url>
-      <loc>http://localhost:4000/categories/tools/</loc>
-      
-        <lastmod>2017-05-26T14:35:34+06:00</lastmod>
+        <lastmod>2017-05-26T14:38:01+06:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -149,9 +115,43 @@
   
     
     <url>
-      <loc>http://localhost:4000/feed.xslt.xml</loc>
+      <loc>http://www.sunny.im/categories/random/</loc>
       
-        <lastmod>2017-05-26T14:35:34+06:00</lastmod>
+        <lastmod>2017-05-26T14:38:01+06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+  
+    
+  
+    
+    <url>
+      <loc>http://www.sunny.im/categories/tools/</loc>
+      
+        <lastmod>2017-05-26T14:38:01+06:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://www.sunny.im/feed.xslt.xml</loc>
+      
+        <lastmod>2017-05-26T14:38:01+06:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
