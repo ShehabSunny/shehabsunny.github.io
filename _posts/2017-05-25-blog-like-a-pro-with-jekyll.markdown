@@ -137,7 +137,7 @@ Now you can take the everything from **_site** folder and host it on a server, t
 
 ### Free hosting with GitHub Pages
 
-As I have mentioned earlier that we can host our site on Github for free. In order to accomplish that we need to login to out Github account and create a repository named ***[username].github.io***. Now come back and push our project to the master branch of the repository. It's that simple to publish our site with Github Pages. The site will be published at **[username].github.io**. If you want to change anything (like changing CSS, Html or write new Post) then do it on your local machine and push to the github repository. That will update the site instantly.
+As I have mentioned earlier that we can host our site on Github for free. In order to accomplish that we need to login to our Github account and create a repository named ***[username].github.io***. Now come back and push our project to the master branch of the repository. It's that simple to publish our site with Github Pages. The site will be published at **[username].github.io**. If you want to change anything (like changing CSS, Html or write new Post) then do it on your local machine and push to the github repository. That will update the site instantly.
 
 
 ## Tips
