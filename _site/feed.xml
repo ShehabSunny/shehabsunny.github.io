@@ -4,10 +4,10 @@
     <title>Shehabul Hossain Sunny</title>
     <description>Shehabul Hossain Sunny. Software Developer from Dhaka, Bangladesh. Co-founder of Techynaf.
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 27 May 2017 14:49:42 +0600</pubDate>
-    <lastBuildDate>Sat, 27 May 2017 14:49:42 +0600</lastBuildDate>
+    <link>http://www.sunny.im/</link>
+    <atom:link href="http://www.sunny.im/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 27 May 2017 14:51:07 +0600</pubDate>
+    <lastBuildDate>Sat, 27 May 2017 14:51:07 +0600</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
     
       <item>
@@ -154,8 +154,8 @@ categories: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;awesome-category]
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 25 May 2017 06:00:01 +0600</pubDate>
-        <link>http://localhost:4000/tools/2017/05/25/blog-like-a-pro-with-jekyll.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tools/2017/05/25/blog-like-a-pro-with-jekyll.html</guid>
+        <link>http://www.sunny.im/tools/2017/05/25/blog-like-a-pro-with-jekyll.html</link>
+        <guid isPermaLink="true">http://www.sunny.im/tools/2017/05/25/blog-like-a-pro-with-jekyll.html</guid>
         
         
         <category>tools</category>
@@ -171,8 +171,8 @@ categories: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;awesome-category]
 &lt;p&gt;Stay well.&lt;/p&gt;
 </description>
         <pubDate>Fri, 11 Nov 2016 09:23:01 +0600</pubDate>
-        <link>http://localhost:4000/random/2016/11/11/hello-world.html</link>
-        <guid isPermaLink="true">http://localhost:4000/random/2016/11/11/hello-world.html</guid>
+        <link>http://www.sunny.im/random/2016/11/11/hello-world.html</link>
+        <guid isPermaLink="true">http://www.sunny.im/random/2016/11/11/hello-world.html</guid>
         
         
         <category>random</category>
