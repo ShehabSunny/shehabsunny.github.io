@@ -14,7 +14,7 @@ There are many ways to write a blog. Some requires few mouse clicks and some dra
 ## What and Why?
 Jekyll is a static site generator, it converts raw text files in various formats (like Markdown) and converts them into html files. It generates ready-to-publish static websites that can be served with a web server.
 
-The Unique feature of Jekyll is that it happens to be the engine behind  [Github Pages](https://pages.github.com/). As a result we can easily host our blog/site on Github's server for free.
+The unique feature of Jekyll is that it happens to be the engine behind  [Github Pages](https://pages.github.com/). As a result we can easily host our blog/site on Github's server for free.
 
 ## Overview
 First of all we need to install and setup Jekyll. Then create a new site, build it and push it into a github repository that has been created for our Github Page. Our site will be live at **http://[username].github.io**. We will also be able to use a custom domain of our own.

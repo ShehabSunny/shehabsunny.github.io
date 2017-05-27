@@ -4,10 +4,10 @@
     <title>Shehabul Hossain Sunny</title>
     <description>Shehabul Hossain Sunny. Software Developer from Dhaka, Bangladesh. Co-founder of Techynaf.
 </description>
-    <link>http://www.sunny.im/</link>
-    <atom:link href="http://www.sunny.im/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 26 May 2017 14:38:01 +0600</pubDate>
-    <lastBuildDate>Fri, 26 May 2017 14:38:01 +0600</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 27 May 2017 14:49:42 +0600</pubDate>
+    <lastBuildDate>Sat, 27 May 2017 14:49:42 +0600</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
     
       <item>
@@ -20,7 +20,7 @@
 &lt;h2 id=&quot;what-and-why&quot;&gt;What and Why?&lt;/h2&gt;
 &lt;p&gt;Jekyll is a static site generator, it converts raw text files in various formats (like Markdown) and converts them into html files. It generates ready-to-publish static websites that can be served with a web server.&lt;/p&gt;
 
-&lt;p&gt;The Unique feature of Jekyll is that it happens to be the engine behind  &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt;. As a result we can easily host our blog/site on Github’s server for free.&lt;/p&gt;
+&lt;p&gt;The unique feature of Jekyll is that it happens to be the engine behind  &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt;. As a result we can easily host our blog/site on Github’s server for free.&lt;/p&gt;
 
 &lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;First of all we need to install and setup Jekyll. Then create a new site, build it and push it into a github repository that has been created for our Github Page. Our site will be live at &lt;strong&gt;http://[username].github.io&lt;/strong&gt;. We will also be able to use a custom domain of our own.&lt;/p&gt;
@@ -154,8 +154,8 @@ categories: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;awesome-category]
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 25 May 2017 06:00:01 +0600</pubDate>
-        <link>http://www.sunny.im/tools/2017/05/25/blog-like-a-pro-with-jekyll.html</link>
-        <guid isPermaLink="true">http://www.sunny.im/tools/2017/05/25/blog-like-a-pro-with-jekyll.html</guid>
+        <link>http://localhost:4000/tools/2017/05/25/blog-like-a-pro-with-jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tools/2017/05/25/blog-like-a-pro-with-jekyll.html</guid>
         
         
         <category>tools</category>
@@ -171,8 +171,8 @@ categories: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;awesome-category]
 &lt;p&gt;Stay well.&lt;/p&gt;
 </description>
         <pubDate>Fri, 11 Nov 2016 09:23:01 +0600</pubDate>
-        <link>http://www.sunny.im/random/2016/11/11/hello-world.html</link>
-        <guid isPermaLink="true">http://www.sunny.im/random/2016/11/11/hello-world.html</guid>
+        <link>http://localhost:4000/random/2016/11/11/hello-world.html</link>
+        <guid isPermaLink="true">http://localhost:4000/random/2016/11/11/hello-world.html</guid>
         
         
         <category>random</category>
