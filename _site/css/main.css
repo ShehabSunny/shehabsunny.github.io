@@ -47,9 +47,9 @@ blockquote {
     color: #828282;
     font-weight: 400; }
     blockquote p:before {
-      content: "“ "; }
+      content: "ÔÇ£ "; }
     blockquote p:after {
-      content: " ”"; }
+      content: " ÔÇØ"; }
 
 strong {
   color: #333333; }
