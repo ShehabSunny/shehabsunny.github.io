@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Using Docker in Jenkins —  &raquo;  Shehabul Hossain Sunny</title>
+<meta name="description" content="Shehabul Hossain Sunny. Software Developer from Dhaka, Bangladesh. Co-founder of Techynaf.
+">
+<meta name="keywords" content="">
+<link rel="canonical" href="http://www.sunny.im/productivity/tools/2019/01/12/jenkins-with-docker.html">
+        
+
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Using Docker in Jenkins" />
+<meta name="twitter:description" content="Shehabul Hossain Sunny. Software Developer from Dhaka, Bangladesh. Co-founder of Techynaf.
+" />
+<meta name="twitter:image" content="http://www.sunny.im" />
+
+<!-- Google plus -->
+<meta name="author" content="https://www.google.com/+ShehabulSunny">
+<link rel="author" href="https://www.google.com/+ShehabulSunny">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using Docker in Jenkins">
+<meta property="og:description" content="Shehabul Hossain Sunny. Software Developer from Dhaka, Bangladesh. Co-founder of Techynaf.
+">
+<meta property="og:url" content="http://www.sunny.im/productivity/tools/2019/01/12/jenkins-with-docker.html">
+<meta property="og:site_name" content="Shehabul Hossain Sunny">
+
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/assets/vendor/highlight/styles/solarized_dark.css">
+
+<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css">
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <header class="header">
+    <div class="navigation">
+        <a href="/" class="logo">Shehabul Hossain Sunny</a>
+
+        <ul class="menu">
+            <li class="menu__entry"><a href="/about">About</a></li>
+            <li class="menu__entry"><a href="/blog">Blog</a></li>
+        </ul>
+    </div>
+
+    <ul class="social-links">
+        
+            <a href="https://github.com/ShehabSunny" class="social-links__entry" target="_blank">
+                <i class="fa fa-github"></i>
+            </a>
+        
+
+        
+            <a href="https://facebook.com/ShehabulSunny" class="social-links__entry" target="_blank">
+                <i class="fa fa-facebook"></i>
+            </a>
+        
+
+        
+            <a href="https://twitter.com/ShehabulSunny" class="social-links__entry" target="_blank">
+                <i class="fa fa-twitter"></i>
+            </a>
+        
+
+        
+            <a href="mailto:hello@sunny.im" class="social-links__entry">
+                <i class="fa fa-envelope"></i>
+            </a>
+        
+    </ul>
+</header>
+
+
+            <h1 class="page-title post-title">
+    <div class="page-title__text post-title__text">Using Docker in Jenkins</div>
+    <div class="page-title__subtitle post-title__subtitle"></div>
+</h1>
+
+<div class="content">
+    <h2 id="introduction">Introduction</h2>
+<p>Jenkins offers a simple way to set up a continuous integration or continuous delivery environment for almost any combination of languages and source code repositories using pipelines, as well as automating other routine development tasks. Installing Jenkins is fairly straight forward. With docker, it’s even easier.</p>
+
+<p>However, if we want to create a Jenkins pipeline that uses docker inside of the container then it gets a little painful as the official Jenkins image does not ship with docker pre-installed. There are two different ways to address this problem. One is to use docker-in-docker and another one is to use the host machine’s docker inside the Jenkins container. In this post, I will be discussing how can we use the host machine’s docker inside of a container, Jenkins in this case.</p>
+
+<hr />
+<h2 id="tldr">TL;DR</h2>
+<p>If you do not feel like creating the image then you can pull the <strong>pre-build image</strong> using this command <code class="highlighter-rouge">docker pull shehab/jenkins-with-docker</code> and run using the following command.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 8080:8080 -p 50000:50000 \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /usr/bin/docker:/usr/bin/docker shehab/jenkins-with-docker 
+</code></pre>
+</div>
+<p>or if you want to use docker-compose use the following <code class="highlighter-rouge">docker-compose.yml</code> file to define the service and then run <code class="highlighter-rouge">docker-compose up -d</code> to run the container.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>version: "3"
+services:
+    jenkins:
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/usr/bin/docker:/usr/bin/docker'
+        ports:
+            - '8080:8080'
+            - '50000:50000'
+        image: 'shehab/jenkins-with-docker'
+</code></pre>
+</div>
+
+<p>After the container is running we need to grab the admin password to log in for the first time. The easiest way to do so is to check container logs using the following command.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>docker logs &lt;container-id&gt; 
+# Copy container id from the output of the previous command
+</code></pre>
+</div>
+
+<hr />
+
+<h4 id="now-lets-get-back-to-using-the-official-jenkins-image-and-modify-it-so-that-we-can-run-docker-commands-inside">Now, Let’s get back to using the official Jenkins image and modify it so that we can run docker commands inside.</h4>
+
+<h2 id="get-the-jenkins-image">Get the Jenkins image</h2>
+<p>First of all, let’s pull the Jenkins image using the following command. This will pull the latest LTS version of Jenkins from docker hub.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>docker pull Jenkins/Jenkins:lts
+</code></pre>
+</div>
+
+<h2 id="run-the-image">Run the image</h2>
+<p>In order to run a container, we need to run the following command.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 8080:8080 -p 50000:50000 \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /usr/bin/docker:/usr/bin/docker Jenkins/Jenkins:lts 
+</code></pre>
+</div>
+
+<p>This will print the <strong>container id</strong> in the console. Now, check the logs to get the initial password needed to log into Jenkins web portal. To check the logs of the container we need to run this command.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>docker logs &lt;container-id&gt; 
+# Copy container id from the output of the previous command
+</code></pre>
+</div>
+
+<p>You will see something like this in the console:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>*************************************************************
+*************************************************************
+*************************************************************
+
+Jenkins initial setup is required. An admin user has been created and a password generated.
+Please use the following password to proceed to installation:
+
+875a23d953d2491a9590ef689c0cad2b
+
+This may also be found at: /var/Jenkins_home/secrets/initialAdminPassword
+
+*************************************************************
+*************************************************************
+*************************************************************
+</code></pre>
+</div>
+
+<p>Grab the password and use it in the web portal for the first login.</p>
+
+<h2 id="update-the-container">Update the container</h2>
+<p>At this moment we have docker container of a Jenkins image running on port <code class="highlighter-rouge">8080</code>. If we visit <code class="highlighter-rouge">localhost:8080</code> in the browser, we will see the web portal of Jenkins that will ask for the admin password and prompt an installation guide. After finishing the installation process Jenkins can be used to create new pipelines and fully usable.</p>
+
+<p>However, if we try to create a pipeline that uses <code class="highlighter-rouge">docker</code> command or try to use <code class="highlighter-rouge">docker</code> inside the container, it will fail. we will get an error like this:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>docker: error while loading shared libraries: libltdl.so.7: cannot open shared object file: No such file or directory
+</code></pre>
+</div>
+<p>This is because some libraries are missing. Now, we need to install those missing libraries in the container. In order to do that, we need to get into the container with the following command.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>docker exec -it -u root &lt;container-id&gt; bash
+</code></pre>
+</div>
+<p>Make sure to change the <code class="highlighter-rouge">&lt;container-id&gt;</code> and log in as root user with <code class="highlighter-rouge">-u root</code>.</p>
+
+<p>Now run the following command to install <code class="highlighter-rouge">libltdl7</code>.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>apt-get update &amp;&amp; apt-get install -y libltdl7 &amp;&amp; rm -rf /var/lib/apt/lists/*
+</code></pre>
+</div>
+
+<p><strong>At this point we can use docker from the container that is actually connected to the host machine’s docker.</strong></p>
+
+<p>If we run <code class="highlighter-rouge">docker ps -a</code> then we will be able to see all the docker containers running on the host machine.</p>
+
+<p>We can now create any Jenkins pipeline that can use docker command to build or deploy using the host machine’s docker. <strong>Please note that if we deploy any docker container using the pipeline then it will actually be deployed on the host machine, not inside the Jenkins container.</strong></p>
+
+<h2 id="using-docker-compose-inside-jenkins">Using docker compose inside Jenkins</h2>
+<p>If you are planning to use docker compose then you need this step.
+The Jenkins image does not come with docker pre-installed, neither the docker-compose. In order to install docker compose we need to run the following commands inside the container just like we installed libltdl7.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -L https://github.com/docker/compose/releases/download/1.21.3/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+</code></pre>
+</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>chmod +x /usr/local/bin/docker-compose
+</code></pre>
+</div>
+
+<p>Now, we can use docker-compose inside the Jenkins container as well.</p>
+
+<hr />
+
+<p>Jenkins with Docker can be really handy and make the deployment process a lot easier. Happy deployment.</p>
+
+</div>
+
+<div class="about">
+    <div class="about__devider">*****</div>
+    <div class="about__text">
+        Written by <strong>  Shehabul Hossain Sunny </strong>
+        on <strong>12 January 2019</strong>
+    </div>
+</div>
+
+
+        </div>
+
+        <script src="/assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+        
+    </body>
+</html>

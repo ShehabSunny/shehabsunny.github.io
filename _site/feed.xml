@@ -6,9 +6,139 @@
 </description>
     <link>http://www.sunny.im/</link>
     <atom:link href="http://www.sunny.im/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 12 Jan 2019 20:41:22 +0600</pubDate>
-    <lastBuildDate>Sat, 12 Jan 2019 20:41:22 +0600</lastBuildDate>
+    <pubDate>Wed, 10 Apr 2019 04:06:52 +0600</pubDate>
+    <lastBuildDate>Wed, 10 Apr 2019 04:06:52 +0600</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        <title>Using Docker in Jenkins</title>
+        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Jenkins offers a simple way to set up a continuous integration or continuous delivery environment for almost any combination of languages and source code repositories using pipelines, as well as automating other routine development tasks. Installing Jenkins is fairly straight forward. With docker, it’s even easier.&lt;/p&gt;
+
+&lt;p&gt;However, if we want to create a Jenkins pipeline that uses docker inside of the container then it gets a little painful as the official Jenkins image does not ship with docker pre-installed. There are two different ways to address this problem. One is to use docker-in-docker and another one is to use the host machine’s docker inside the Jenkins container. In this post, I will be discussing how can we use the host machine’s docker inside of a container, Jenkins in this case.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;If you do not feel like creating the image then you can pull the &lt;strong&gt;pre-build image&lt;/strong&gt; using this command &lt;code class=&quot;highlighter-rouge&quot;&gt;docker pull shehab/jenkins-with-docker&lt;/code&gt; and run using the following command.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 8080:8080 -p 50000:50000 \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /usr/bin/docker:/usr/bin/docker shehab/jenkins-with-docker 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;or if you want to use docker-compose use the following &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; file to define the service and then run &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose up -d&lt;/code&gt; to run the container.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;version: &quot;3&quot;
+services:
+    jenkins:
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/usr/bin/docker:/usr/bin/docker'
+        ports:
+            - '8080:8080'
+            - '50000:50000'
+        image: 'shehab/jenkins-with-docker'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;After the container is running we need to grab the admin password to log in for the first time. The easiest way to do so is to check container logs using the following command.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker logs &amp;lt;container-id&amp;gt; 
+# Copy container id from the output of the previous command
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;now-lets-get-back-to-using-the-official-jenkins-image-and-modify-it-so-that-we-can-run-docker-commands-inside&quot;&gt;Now, Let’s get back to using the official Jenkins image and modify it so that we can run docker commands inside.&lt;/h4&gt;
+
+&lt;h2 id=&quot;get-the-jenkins-image&quot;&gt;Get the Jenkins image&lt;/h2&gt;
+&lt;p&gt;First of all, let’s pull the Jenkins image using the following command. This will pull the latest LTS version of Jenkins from docker hub.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker pull Jenkins/Jenkins:lts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;run-the-image&quot;&gt;Run the image&lt;/h2&gt;
+&lt;p&gt;In order to run a container, we need to run the following command.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 8080:8080 -p 50000:50000 \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /usr/bin/docker:/usr/bin/docker Jenkins/Jenkins:lts 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This will print the &lt;strong&gt;container id&lt;/strong&gt; in the console. Now, check the logs to get the initial password needed to log into Jenkins web portal. To check the logs of the container we need to run this command.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker logs &amp;lt;container-id&amp;gt; 
+# Copy container id from the output of the previous command
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You will see something like this in the console:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;*************************************************************
+*************************************************************
+*************************************************************
+
+Jenkins initial setup is required. An admin user has been created and a password generated.
+Please use the following password to proceed to installation:
+
+875a23d953d2491a9590ef689c0cad2b
+
+This may also be found at: /var/Jenkins_home/secrets/initialAdminPassword
+
+*************************************************************
+*************************************************************
+*************************************************************
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Grab the password and use it in the web portal for the first login.&lt;/p&gt;
+
+&lt;h2 id=&quot;update-the-container&quot;&gt;Update the container&lt;/h2&gt;
+&lt;p&gt;At this moment we have docker container of a Jenkins image running on port &lt;code class=&quot;highlighter-rouge&quot;&gt;8080&lt;/code&gt;. If we visit &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:8080&lt;/code&gt; in the browser, we will see the web portal of Jenkins that will ask for the admin password and prompt an installation guide. After finishing the installation process Jenkins can be used to create new pipelines and fully usable.&lt;/p&gt;
+
+&lt;p&gt;However, if we try to create a pipeline that uses &lt;code class=&quot;highlighter-rouge&quot;&gt;docker&lt;/code&gt; command or try to use &lt;code class=&quot;highlighter-rouge&quot;&gt;docker&lt;/code&gt; inside the container, it will fail. we will get an error like this:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker: error while loading shared libraries: libltdl.so.7: cannot open shared object file: No such file or directory
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This is because some libraries are missing. Now, we need to install those missing libraries in the container. In order to do that, we need to get into the container with the following command.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker exec -it -u root &amp;lt;container-id&amp;gt; bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Make sure to change the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;container-id&amp;gt;&lt;/code&gt; and log in as root user with &lt;code class=&quot;highlighter-rouge&quot;&gt;-u root&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now run the following command to install &lt;code class=&quot;highlighter-rouge&quot;&gt;libltdl7&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apt-get update &amp;amp;&amp;amp; apt-get install -y libltdl7 &amp;amp;&amp;amp; rm -rf /var/lib/apt/lists/*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;At this point we can use docker from the container that is actually connected to the host machine’s docker.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If we run &lt;code class=&quot;highlighter-rouge&quot;&gt;docker ps -a&lt;/code&gt; then we will be able to see all the docker containers running on the host machine.&lt;/p&gt;
+
+&lt;p&gt;We can now create any Jenkins pipeline that can use docker command to build or deploy using the host machine’s docker. &lt;strong&gt;Please note that if we deploy any docker container using the pipeline then it will actually be deployed on the host machine, not inside the Jenkins container.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;using-docker-compose-inside-jenkins&quot;&gt;Using docker compose inside Jenkins&lt;/h2&gt;
+&lt;p&gt;If you are planning to use docker compose then you need this step.
+The Jenkins image does not come with docker pre-installed, neither the docker-compose. In order to install docker compose we need to run the following commands inside the container just like we installed libltdl7.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -L https://github.com/docker/compose/releases/download/1.21.3/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chmod +x /usr/local/bin/docker-compose
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now, we can use docker-compose inside the Jenkins container as well.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Jenkins with Docker can be really handy and make the deployment process a lot easier. Happy deployment.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 13 Jan 2019 02:02:01 +0600</pubDate>
+        <link>http://www.sunny.im/productivity/tools/2019/01/12/jenkins-with-docker.html</link>
+        <guid isPermaLink="true">http://www.sunny.im/productivity/tools/2019/01/12/jenkins-with-docker.html</guid>
+        
+        
+        <category>productivity</category>
+        
+        <category>tools</category>
+        
+      </item>
     
       <item>
         <title>Blog like a pro with Jekyll</title>
